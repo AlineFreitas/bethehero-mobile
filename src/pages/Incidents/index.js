@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, TouchableOpacity, FlatList } from 'react-native';
 
 import api from '../../services/api'
 
 import heroesLogo from '../../assets/logo.png';
 
 import style from './style'
-import { TouchableOpacity, FlatList } from 'react-native-gesture-handler';
 
 export default function Incidents() {
   const [incidents, setIncidents] = useState([]); 
@@ -23,7 +22,7 @@ export default function Incidents() {
     setIncidents(response.data);
   }
 
-  useEffect(() => {},
+  useEffect(() => { loadIncidents() },
   []);
 
   return(
