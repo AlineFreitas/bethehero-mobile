@@ -14,14 +14,13 @@ export default function Incident() {
 
   const incident = route.params.incident;
 
-  const message = `Hello, ${incident.name}! I'm getting in touch to help out
-  on your case "${incident.title}",
-  with an amount of ${ Intl.NumberFormat(
+  const message = `Hello, ${incident.name}!
+  I'm getting in touch to help out on your case "${incident.title}", with an amount of ${ Intl.NumberFormat(
     'pt-BR', { style: 'currency', currency: 'BRL'})
-  .format(incident.value)}`;
+  .format(incident.value)}.`;
 
   function navigateBack(){
-    navigation.goBack(); 
+    navigation.goBack();
   }
 
   function sendEmail(){
