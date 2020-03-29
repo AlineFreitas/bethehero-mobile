@@ -1,5 +1,6 @@
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import { View, Image, Text } from 'react-native';
 
 import heroesLogo from '../../assets/logo.png';
@@ -8,6 +9,12 @@ import style from './style'
 import { TouchableOpacity, FlatList } from 'react-native-gesture-handler';
 
 export default function Incidents() {
+  const navigation = useNavigation();
+
+  function navigateToShowIncident() {
+    navigation.navigate('Incident');
+  }
+
   return(
     <View style={style.container}>
       <View style={style.header}>
@@ -39,15 +46,13 @@ export default function Incidents() {
 
             <TouchableOpacity
               style={style.showIncidentButton}
-              onPress={ () => {}} >
+              onPress={ navigateToShowIncident} >
                 <Text style={style.showIncidentButtonText}>See Details</Text>
                 <Feather name="arrow-right" size={17} color="#e02041"/>
             </TouchableOpacity>
           </View>
         )}
-      >
-
-      </FlatList>
+      />
     </View>
   );
 }
