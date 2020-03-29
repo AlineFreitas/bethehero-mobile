@@ -14,7 +14,11 @@ export default function Incident() {
 
   const incident = route.params.incident;
 
-  const message = `Hello! I'm getting in touch to help ou on your case "Amora", with an amount of R$100,00`;
+  const message = `Hello, ${incident.name}! I'm getting in touch to help out
+  on your case "${incident.title}",
+  with an amount of ${ Intl.NumberFormat(
+    'pt-BR', { style: 'currency', currency: 'BRL'})
+  .format(incident.value)}`;
 
   function navigateBack(){
     navigation.goBack(); 
@@ -22,14 +26,14 @@ export default function Incident() {
 
   function sendEmail(){
     MailComposer.composeAsync({
-      subject: 'Herói do caso: Amora',
-      recipients: [''],
+      subject: `Herói do caso: ${incident.title}`,
+      recipients: [incident.email],
       body: message,
     });
   }
 
   function sendWhatsapp(){
-    Linking.openURL(`whatsapp://send?phone=5522998777382&text=${message}`)
+    Linking.openURL(`whatsapp://send?phone=${incident.whatsapp_number}&text=${message}`)
   }
 
   return(
