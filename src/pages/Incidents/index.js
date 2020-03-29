@@ -15,8 +15,8 @@ export default function Incidents() {
   const [totalIncidents, setTotalIncidents] = useState(0); 
   const navigation = useNavigation();
 
-  function navigateToShowIncident() {
-    navigation.navigate('Incident');
+  function navigateToShowIncident(incident) {
+    navigation.navigate('Incident', { incident });
   }
 
   async function loadIncidents(){
@@ -67,7 +67,7 @@ export default function Incidents() {
 
             <TouchableOpacity
               style={style.showIncidentButton}
-              onPress={ navigateToShowIncident} >
+              onPress={ () => navigateToShowIncident(incident)} >
                 <Text style={style.showIncidentButtonText}>See Details</Text>
                 <Feather name="arrow-right" size={17} color="#e02041"/>
             </TouchableOpacity>
