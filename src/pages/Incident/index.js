@@ -1,17 +1,24 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity} from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 import heroesLogo from '../../assets/logo.png';
 
 import style from './style';
 
 export default function Incident() {
+  const navigation = useNavigation();
+
+  function navigateBack(){
+    navigation.goBack();
+  }
+
   return(
     <View style={style.container}>
       <View style={style.header}>
         <Image source={heroesLogo}/>
-        <TouchableOpacity onPress={ () => {}}>
+        <TouchableOpacity onPress={navigateBack}>
           <Feather name="arrow-left" size={28} color="#e02041"/>
         </TouchableOpacity>
       </View>
