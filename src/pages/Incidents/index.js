@@ -42,18 +42,18 @@ export default function Incidents() {
       </View>
 
       <FlatList
-        data={[1, 2, 3, 4, 5]}
-        keyExtractor={ incident => String(incident)}
+        data={incidents}
+        keyExtractor={ incident => String(incident.id)}
         showsVerticalScrollIndicator={false}
         style={style.incidentsList}
-        renderItem={ () => (
+        renderItem={ ( { item: incident }) => (
           <View style={style.incident}>
-            <Text style={style.incidentLabel}>Incident</Text>
-            <Text style={style.incidentValue}>Amora</Text>
-            <Text style={style.incidentLabel}>Description</Text>
-            <Text style={style.incidentValue}>Something something, with Amora.</Text>
+            <Text style={style.incidentLabel}>ONG</Text>
+            <Text style={style.incidentValue}>{incident.name}</Text>
+            <Text style={style.incidentLabel}>Title</Text>
+            <Text style={style.incidentValue}>{incident.title}</Text>
             <Text style={style.incidentLabel}>Value</Text>
-            <Text style={style.incidentValue}>R$500,00</Text>
+            <Text style={style.incidentValue}>{incident.value}</Text>
 
             <TouchableOpacity
               style={style.showIncidentButton}
