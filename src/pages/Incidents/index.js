@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { View, Image, Text } from 'react-native';
+
+import api from '../../services/api'
 
 import heroesLogo from '../../assets/logo.png';
 
@@ -9,11 +11,20 @@ import style from './style'
 import { TouchableOpacity, FlatList } from 'react-native-gesture-handler';
 
 export default function Incidents() {
+  const [incidents, setIncidents] = useState([]); 
   const navigation = useNavigation();
 
   function navigateToShowIncident() {
     navigation.navigate('Incident');
   }
+
+  async function loadIncidents(){
+    const response = await api.get('/incidents');
+    setIncidents(response.data);
+  }
+
+  useEffect(() => {},
+  []);
 
   return(
     <View style={style.container}>
