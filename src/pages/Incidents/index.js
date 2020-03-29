@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { View, Image, Text, TouchableOpacity, FlatList } from 'react-native';
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR'; 
 
 import api from '../../services/api'
 
 import heroesLogo from '../../assets/logo.png';
-
 import style from './style'
 
 export default function Incidents() {
@@ -52,7 +53,12 @@ export default function Incidents() {
             <Text style={style.incidentLabel}>Title</Text>
             <Text style={style.incidentValue}>{incident.title}</Text>
             <Text style={style.incidentLabel}>Value</Text>
-            <Text style={style.incidentValue}>{incident.value}</Text>
+            <Text style={style.incidentValue}>
+              { Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              }).format(incident.value)}
+            </Text>
 
             <TouchableOpacity
               style={style.showIncidentButton}
